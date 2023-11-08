@@ -8,7 +8,6 @@
 </head>
 
 <body>
-
     <?php
     include "koneksidatabase.php";
     $qry_film = mysqli_query($conn, "select * from film where id_film = 1");
