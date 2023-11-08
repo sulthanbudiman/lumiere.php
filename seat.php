@@ -238,7 +238,6 @@ include "koneksidatabase.php";
     echo '<a href="transaksi.php?id_seat=' . $dt_duduk['no_seat'] . '" class="btn btn-warning btn-lg" role="button" id="tombolkirim">Kirim</a>';
   }
   ?>
-
   <script>
     <?php
     $result = mysqli_query($conn, "SELECT * FROM seat");

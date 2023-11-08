@@ -19,7 +19,6 @@
     }
     ?>
     <h2><?= $dt_film['judul'] ?></h2>
-
     <div class="row">
         <div class="col-md-4">
             <img src="../assets/poster_film/<?= $dt_film['poster'] ?>" class="card-img-top">
