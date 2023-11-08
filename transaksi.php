@@ -15,7 +15,7 @@
     if (isset($_GET['id_seat'])) {
         $seatmu = $_GET['id_seat'];
     } else {
-        echo 'kontol';
+        echo 'eror';
     }
     ?>
     <h2><?= $dt_film['judul'] ?></h2>
