@@ -7,8 +7,7 @@ include "koneksidatabase.php";
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
   <link rel="stylesheet" href="styletempatduduk.css" />
 </head>
 
@@ -30,7 +29,7 @@ include "koneksidatabase.php";
       } else {
         elemen.classList.remove('btn-danger');
         kirimStatusTempatDuduk(this.event, "kosong")
-        
+
         elemen.classList.add('btn-success');
       }
     }
@@ -45,14 +44,14 @@ include "koneksidatabase.php";
     //         }
     //     }
   </script>
-    
+
   <div class="card text-bg-dark text-center" id="screen">SCREEN</div>
 
   <div class="container text-center" id="jarak">
     <div class="row g-3">
-    
+
       <div class="col">
-        
+
         <div class="p-3 btn" id="a1" onclick="ubahWarna('a1')">A1</div>
       </div>
       <div class="col ">
@@ -225,53 +224,59 @@ include "koneksidatabase.php";
       <div class="col">
         <div class="p-3 btn" id="e10" onclick="ubahWarna('e10')">E10</div>
       </div>
-    
-  </div>
+
+    </div>
   </div>
 
   <a href="" class="btn btn-primary btn-lg" role="button" id="tombolkembali">Kembali</a>
+  <?php
+  $get_duduk = mysqli_query($conn, "SELECT * FROM seat WHERE status = 'terisi'");
+  if (mysqli_num_rows($get_duduk) == 0) {
+    echo '<a class="btn btn-danger btn-lg" role="button">Pilih Tempat Duduk woi</a>';
+  } else {
+    $dt_duduk = mysqli_fetch_array($get_duduk);
+    echo '<a href="transaksi.php?id_seat=' . $dt_duduk['no_seat'] . '" class="btn btn-warning btn-lg" role="button" id="tombolkirim">Kirim</a>';
+  }
+  ?>
 
-  <a href="transaksi.php" class="btn btn-warning btn-lg" role="button" id="tombolkirim">Kirim</a>
 
   <script>
-
-  <?php 
-        $result = mysqli_query($conn, "SELECT * FROM seat");
-        while ($row = mysqli_fetch_array($result)) {
-          ?>
-            var test<?=$row["no_seat"]?> = document.querySelector("#<?=$row["no_seat"]?>");
-            if ("<?=$row["status"]?>" == "terisi") test<?=$row["no_seat"]?>.classList.add('btn-danger');
-            else test<?=$row["no_seat"]?>.classList.add('btn-success');
-          <?php 
-        }
-      ?>
+    <?php
+    $result = mysqli_query($conn, "SELECT * FROM seat");
+    while ($row = mysqli_fetch_array($result)) {
+    ?>
+      var test<?= $row["no_seat"] ?> = document.querySelector("#<?= $row["no_seat"] ?>");
+      if ("<?= $row["status"] ?>" == "terisi") test<?= $row["no_seat"] ?>.classList.add('btn-danger');
+      else test<?= $row["no_seat"] ?>.classList.add('btn-success');
+    <?php
+    }
+    ?>
 
 
     document.getElementById("tombolkirim").addEventListener("click", function() {
       kirimStatusTempatDuduk();
     });
 
-function kirimStatusTempatDuduk(event,status) {
-  var target = event.target || event.srcElement;
-  var tempatDudukID = target.id; // Ambil ID tempat duduk
-  const selectedTempatDuduk = document.querySelector(`#${tempatDudukID}.btn-danger`); // Temukan tempat duduk yang dipilih (yang memiliki class 'btn-danger')
-    console.log(tempatDudukID)
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "prosesseat.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        alert(xhr.responseText); // Tampilkan pesan dari server
-      }
-    };
-    xhr.send("no_seat=" + tempatDudukID+"&"+"status=" + status);
-}
-</script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous">
+    function kirimStatusTempatDuduk(event, status) {
+      var target = event.target || event.srcElement;
+      var tempatDudukID = target.id; // Ambil ID tempat duduk
+      const selectedTempatDuduk = document.querySelector(`#${tempatDudukID}.btn-danger`); // Temukan tempat duduk yang dipilih (yang memiliki class 'btn-danger')
+      console.log(tempatDudukID)
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "prosesseat.php", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          alert(xhr.responseText); // Tampilkan pesan dari server
+        }
+      };
+      xhr.send("no_seat=" + tempatDudukID + "&" + "status=" + status);
+    }
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+  </script>
+
 </body>
 
 </html>
