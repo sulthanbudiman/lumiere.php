@@ -228,7 +228,7 @@ include "koneksidatabase.php";
     </div>
   </div>
 
-  <a href="" class="btn btn-primary btn-lg" role="button" id="tombolkembali">Kembali</a>
+  <a href="crud_film.php" class="btn btn-primary btn-lg" role="button" id="tombolkembali">Kembali</a>
   <?php
   $get_duduk = mysqli_query($conn, "SELECT * FROM seat WHERE status = 'terisi'");
   if (mysqli_num_rows($get_duduk) == 0) {

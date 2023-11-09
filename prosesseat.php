@@ -11,7 +11,9 @@ if ($_POST) {
     $sql = "update seat set status = '$status' WHERE no_seat = '$tempat_duduk'";
     
     if (mysqli_query($conn, $sql)) {
-        echo "SUKSES";
+        // echo "SUKSES ";
+        echo "<script>alert('Username dan Password tidak benar');location.href='transaksi.php';</script>";
+         
     } else {
         echo "BJIR GAGAL ";
     }
