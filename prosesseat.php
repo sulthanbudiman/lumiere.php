@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 <?php
 if ($_POST) {
     // Pastikan permintaan datang dengan metode POST
@@ -15,7 +23,10 @@ if ($_POST) {
         echo "<script>alert('Username dan Password tidak benar');location.href='transaksi.php';</script>";
          
     } else {
-        echo "BJIR GAGAL ";
+        echo "GAGAL ";
     }
 }
 ?>
+</body>
+</html>
+
