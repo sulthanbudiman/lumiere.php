@@ -222,7 +222,7 @@ $_SESSION['nama'] = "John Doe"; // Isi variabel sesi dengan nilai yang sesuai
     <section class="footer">
         <div class="footer-content">
             <h3>LUMIERE CINEMA</h3>
-            <p>made by Alicia Mustika</p>
+            <p>made by Alicia Mustika Setyoayu and someone who is not important idk who</p>
             <div class="social">
                 <li><a href="#"><i class="fab fa-facebook"></i></a></li>
                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -232,7 +232,7 @@ $_SESSION['nama'] = "John Doe"; // Isi variabel sesi dengan nilai yang sesuai
             </div>
         </div>
         <div class="footer-bottom">
-            <p>copyright &copy;2023</p>
+            <p>Copyright Lumiere &copy;2023</p>
         </div>
     </section>
 

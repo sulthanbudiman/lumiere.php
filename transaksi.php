@@ -15,104 +15,61 @@
 <body>
     <?php
     include "koneksidatabase.php";
-    $qry_film = mysqli_query($conn, "select * from film where id_film = 1");
-    $dt_film = mysqli_fetch_array($qry_film);
-    if (isset($_GET['id_seat'])) {
-        $seatmu = $_GET['id_seat'];
-    } else {
-        echo 'eror';
-    }
-    ?>
-    <h2></h2>
-    <div class="row">
-        <div class="col-md-4">
-            
-        </div>
-        <div class="col-md-8">
-            <!-- <form action="masukkankeranjang.php?id_buku=<?= $dt_film['id_buku'] ?>"> -->
-            <table class="table table-hover table-striped">
-                <thead>
-                    <tr>
-                        <td>Nama Film</td>
-                        <td><?= $dt_film['judul'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>Deskripsi</td>
-                        <td><?= $dt_film['deskripsi'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>Tempat Duduk</td>
-                        <td><?= $seatmu ?></td>
-                    </tr>
-                    <tr>
-                        <td>Jumlah Pinjam</td>
-                        <td><input type="number" name="jumlah_pinjam" value="1"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><input class="btn btn-success" type="submit" value="PINJAM"></td>
-                    </tr>
-                </thead>
-            </table>
-            </form>
-        </div>
-    </div>
-    <?php
-    ?>
+    // $qry_film = mysqli_query($conn, "select * from film where id_film = '".$_GET['id_film']."'");
+    // $dt_film = mysqli_fetch_array($qry_film);
+    // if (isset($_GET['id_seat'])) {
+    //     $seatmu = $_GET['id_seat'];
+    // } else {
+    //     echo 'eror';
+    // }
 
-<div class="container overflow-hidden">
-      <div class="row gx-5">
-        <div class="col">
-          <div class="container">
-            <div class="card" id="card">
-              <div class="p-3">
-              <img src="../assets/poster_film/<?= $dt_film['poster'] ?>" class="card-img-top">
-                <div class="card-header p-3">
-                  <h4><?= $dt_film['judul'] ?></h4>
-                </div>
-                
-                <div class="card-body">
-                  <div class="form-floating mb-3">
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="sisiluas"
-                      placeholder="Masukkan angka "
-                    />
-                    <label for="sisiluas">Sisi</label>
-                  </div>
-                  <!-- Keluarnya hasil -->
-                  <div class="input-group mb-3">
-                    <span class="input-group-text">Hasil</span>
-                    <div class="form">
-                      <input
-                        type="number"
-                        class="form-control"
-                        id="hasilluas"
-                        placeholder="Hasil"
-                        disabled
-                      />
-                    </div>
-                  </div>
-                  <!-- tomobol untuk menghitung -->
-                  <!--? dikasih tombol reset gk enaknya?-->
-                  <section id="body">
-                    <button type="button" onclick="hitungluas()" id="container">
-                      <div class="bottom"></div>
-                      <div class="cover cut"></div>
-                      <div id="text-container">
-                        <div class="text">Hitung</div>
-                      </div>
-                      <div class="text-container cut">
-                        <div class="text text-dark">Hasil</div>
-                      </div>
-                      <div class="overlay"></div>
-                    </button>
-                  </section>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    
+if (isset($_GET['id_film']) && isset($_GET['no_seat'])) {
+  $id_film = $_GET['id_film'];
+  $seatmu = $_GET['no_seat'];
+
+  // Query untuk mendapatkan data film
+  $qry_film = mysqli_query($conn, "SELECT * FROM film WHERE id_film = '$id_film'");
+  $dt_film = mysqli_fetch_assoc($qry_film);
+
+  // Cek apakah film ditemukan
+  if (!$dt_film) {
+      echo 'Film tidak ditemukan.';
+      exit; // Keluar dari skrip jika film tidak ditemukan.
+  }
+
+} 
+?>
+
+<h2><?= $dt_film['judul'] ?></h2>
+<div class="row">
+  <div class="col-md-4">
+      <img src="../assets/poster_film/<?= $dt_film['poster'] ?>" class="card-img-top">
+  </div>
+  <div class="col-md-8">
+      <table class="table table-hover table-striped">
+          <thead>
+              <tr>
+                  <td>Nama Film</td>
+                  <td><?= $dt_film['judul'] ?></td>
+              </tr>
+              <tr>
+                  <td>Deskripsi</td>
+                  <td><?= $dt_film['deskripsi'] ?></td>
+              </tr>
+              <tr>
+                  <td>Tempat Duduk</td>
+                  <td><?= $seatmu ?></td>
+              </tr>
+              <tr>
+                  <td>Harga</td>
+                  <td>Rp. <?= $dt_film['harga'] ?></td>
+              </tr>
+          </thead>
+      </table>
+  </div>
+</div>
+
 
         <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
