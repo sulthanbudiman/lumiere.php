@@ -15,30 +15,16 @@
 <body>
     <?php
     include "koneksidatabase.php";
-    // $qry_film = mysqli_query($conn, "select * from film where id_film = '".$_GET['id_film']."'");
-    // $dt_film = mysqli_fetch_array($qry_film);
-    // if (isset($_GET['id_seat'])) {
-    //     $seatmu = $_GET['id_seat'];
-    // } else {
-    //     echo 'eror';
-    // }
+    $qry_film = mysqli_query($conn, "select * from film ");
+    $dt_film = mysqli_fetch_array($qry_film);
+    if (isset($_GET['id_seat'])) {
+        $seatmu = $_GET['id_seat'];
+    } else {
+        echo 'eror';
+    }
 
     
-if (isset($_GET['id_film']) && isset($_GET['no_seat'])) {
-  $id_film = $_GET['id_film'];
-  $seatmu = $_GET['no_seat'];
 
-  // Query untuk mendapatkan data film
-  $qry_film = mysqli_query($conn, "SELECT * FROM film WHERE id_film = '$id_film'");
-  $dt_film = mysqli_fetch_assoc($qry_film);
-
-  // Cek apakah film ditemukan
-  if (!$dt_film) {
-      echo 'Film tidak ditemukan.';
-      exit; // Keluar dari skrip jika film tidak ditemukan.
-  }
-
-} 
 ?>
 
 <h2><?= $dt_film['judul'] ?></h2>
