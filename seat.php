@@ -45,12 +45,13 @@ include "koneksidatabase.php";
     //     }
   </script>
   <?php
+  session_start();
   if ($_GET['id_film']) {
     $filem = $_GET['id_film'];
-    $_SESSION['filme'] = $filem;
   } else {
       echo 'eror';
   }
+  $_SESSION['filme'] = $filem;
   ?>
 
   <div class="card text-bg-dark text-center" id="screen">SCREEN</div>
