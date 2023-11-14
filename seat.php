@@ -44,6 +44,14 @@ include "koneksidatabase.php";
     //         }
     //     }
   </script>
+  <?php
+  if ($_GET['id_film']) {
+    $filem = $_GET['id_film'];
+    $_SESSION['filme'] = $filem;
+  } else {
+      echo 'eror';
+  }
+  ?>
 
   <div class="card text-bg-dark text-center" id="screen">SCREEN</div>
 
@@ -52,7 +60,7 @@ include "koneksidatabase.php";
 
       <div class="col">
 
-        <div class="p-3 btn" id="a1" onclick="ubahWarna('a1')">A1</div>
+        <div class="p-3 btn" id="a1" onclick="ubahWarna('a1')"><?= $_SESSION['filme'] ?></div>
       </div>
       <div class="col ">
         <div class="p-3 btn" id="a2" onclick="ubahWarna('a2')">A2</div>

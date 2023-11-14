@@ -17,8 +17,10 @@
     include "koneksidatabase.php";
     $qry_film = mysqli_query($conn, "select * from film ");
     $dt_film = mysqli_fetch_array($qry_film);
+    session_start(); 
     if (isset($_GET['id_seat'])) {
         $seatmu = $_GET['id_seat'];
+        $film = $_SESSION['filme'];
     } else {
         echo 'eror';
     }
@@ -27,6 +29,7 @@
 
 ?>
 
+<div class=" container card">
 <h2><?= $dt_film['judul'] ?></h2>
 <div class="row">
   <div class="col-md-4">
@@ -37,7 +40,7 @@
           <thead>
               <tr>
                   <td>Nama Film</td>
-                  <td><?= $dt_film['judul'] ?></td>
+                  <td><?= $film ?></td>
               </tr>
               <tr>
                   <td>Deskripsi</td>
@@ -55,7 +58,7 @@
       </table>
   </div>
 </div>
-
+</div>
 
         <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
