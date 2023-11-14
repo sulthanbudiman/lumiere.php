@@ -8,7 +8,7 @@ include "koneksidatabase.php";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-  <link rel="stylesheet" href="styletempatduduk.css" />
+  <link rel="stylesheet" href="style2.css" />
 </head>
 
 <body>
@@ -21,16 +21,21 @@ include "koneksidatabase.php";
 
     function ubahWarna(a1) {
       const elemen = document.getElementById(a1);
-
+      
       if (elemen.classList.contains('btn-success')) {
+        
         elemen.classList.remove('btn-success');
+        location.reload();
         elemen.classList.add('btn-danger');
         kirimStatusTempatDuduk(this.event, "terisi")
+        
       } else {
         elemen.classList.remove('btn-danger');
+        location.reload();
         kirimStatusTempatDuduk(this.event, "kosong")
 
         elemen.classList.add('btn-success');
+        
       }
     }
 
@@ -61,7 +66,7 @@ include "koneksidatabase.php";
 
       <div class="col">
 
-        <div class="p-3 btn" id="a1" onclick="ubahWarna('a1')"><?= $_SESSION['filme'] ?></div>
+        <div class="p-3 btn" id="a1" onclick="ubahWarna('a1')">A1</div>
       </div>
       <div class="col ">
         <div class="p-3 btn" id="a2" onclick="ubahWarna('a2')">A2</div>
