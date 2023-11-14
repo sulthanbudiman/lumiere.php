@@ -14,13 +14,12 @@
 
 <body>
     <?php
-    include "koneksidatabase.php";
-    $qry_film = mysqli_query($conn, "select * from film ");
-    $dt_film = mysqli_fetch_array($qry_film);
     session_start(); 
+    include "koneksidatabase.php";
+    $qry_film = mysqli_query($conn, "select * from film where id_film=".$_SESSION['filme']);
+    $dt_film = mysqli_fetch_array($qry_film);
     if (isset($_GET['id_seat'])) {
         $seatmu = $_GET['id_seat'];
-        $film = $_SESSION['filme'];
     } else {
         echo 'eror';
     }
@@ -40,7 +39,7 @@
           <thead>
               <tr>
                   <td>Nama Film</td>
-                  <td><?= $film ?></td>
+                  <td><?= $dt_film['judul'] ?></td>
               </tr>
               <tr>
                   <td>Deskripsi</td>

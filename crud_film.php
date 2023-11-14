@@ -175,7 +175,7 @@ $_SESSION['nama'] = "John Doe"; // Isi variabel sesi dengan nilai yang sesuai
                                 <h5> <a class="text-dark"><?=$dt_film['judul']?></a> </h5>
                                 <p class="small text-muted mb-0"><?=$dt_film['deskripsi']?></p>
                                 <?php
-                                echo '<a href="seat.php?id_film=' . $dt_film['judul'] . '" class="btn btn-warning btn-lg" role="button" id="tombolkirim">Kirim</a>';
+                                echo '<a href="seat.php?id_film=' . $dt_film['id_film'] . '" class="btn btn-warning btn-lg" role="button" id="tombolkirim">Kirim</a>';
                                 ?>
                             </div> 
                         </div>
